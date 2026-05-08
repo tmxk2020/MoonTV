@@ -28,15 +28,49 @@
       "name": "暴风资源",
       "is_adult": false
     },
+    "bfzyapp": {
+      "api": "https://app.bfzyapi.com/api.php/provide/vod",
+      "name": "暴风资源app",
+      "is_adult": false
+    },
     "tyyszy": {
       "api": "https://tyyszy.com/api.php/provide/vod",
       "name": "天涯资源",
+      "is_adult": false
+  },
+    "tyhj": {
+      "api": "https://tyyszyapi.com/api.php/provide/vod",
+      "name": "天涯海角",
+      "is_adult": false
+    },
+    "ffzy0": {
+      "api": "http://ffzy1.tv/api.php/provide/vod",
+      "name": "非凡影视0",
+      "detail": "http://ffzy1.tv",
       "is_adult": false
     },
     "ffzy": {
       "api": "http://ffzy5.tv/api.php/provide/vod",
       "name": "非凡影视",
       "detail": "http://ffzy5.tv",
+      "is_adult": false
+  },
+    "ffzy1": {
+      "api": "http://api.ffzyapi.com/api.php/provide/vod",
+      "name": "非凡影视1",
+      "detail": "http://api.ffzyapi.com",
+      "is_adult": false
+  },
+    "ffzycj": {
+      "api": "http://cj.ffzyapi.com/api.php/provide/vod",
+      "name": "非凡采集",
+      "detail": "http://cj.ffzyapi.com",
+      "is_adult": false
+  },
+    "ffzycj": {
+      "api": "http://cj.ffzyapi.com/api.php/provide/vod",
+      "name": "非凡采集",
+      "detail": "http://cj.ffzyapi.com",
       "is_adult": false
     },
     "zy360": {
@@ -49,9 +83,9 @@
       "name": "茅台资源",
       "is_adult": false
     },
-    "wolong": {
+    "wolong1": {
       "api": "https://wolongzyw.com/api.php/provide/vod",
-      "name": "卧龙资源",
+      "name": "卧龙资源1",
       "is_adult": false
     },
     "jisu": {
@@ -74,6 +108,11 @@
       "api": "https://www.mdzyapi.com/api.php/provide/vod",
       "name": "魔都资源",
       "is_adult": false
+   },
+    "mdzy1": {
+      "api": "https://www.moduzy.com/api.php/provide/vod",
+      "name": "魔都资源1",
+      "is_adult": false
     },
     "zuid": {
       "api": "https://api.zuidapi.com/api.php/provide/vod",
@@ -89,15 +128,30 @@
       "api": "https://api.wujinapi.me/api.php/provide/vod",
       "name": "无尽资源",
       "is_adult": false
+},
+    "wujin1": {
+      "api": "https://api.wujinapi.com/api.php/provide/vod",
+      "name": "无尽资源1",
+      "is_adult": false
     },
     "wwzy": {
       "api": "https://wwzy.tv/api.php/provide/vod",
       "name": "旺旺短剧",
       "is_adult": false
     },
+    "wwapi": {
+      "api": "https://api.wwzy.tv/api.php/provide/vod",
+      "name": "旺旺api",
+      "is_adult": false
+    },
     "ikun": {
       "api": "https://ikunzyapi.com/api.php/provide/vod",
       "name": "iKun资源",
+      "is_adult": false
+    },
+    "优酷": {
+      "api": "https://api.ukuapi.com/api.php/provide/vod",
+      "name": "优酷资源",
       "is_adult": false
     },
     "lzi": {
@@ -151,7 +205,7 @@
       "is_adult": false
     },
     "yayazy": {
-      "api": "https://api.wujinapi.cc/api.php/provide/vod",
+      "api": "https://cj.yayazy.net/api.php/provide/vod",
       "name": "TV-丫丫点播",
       "detail": "https://cj.yayazy.net",
       "is_adult": false
@@ -165,6 +219,12 @@
     "wolongzy_cc": {
       "api": "https://collect.wolongzy.cc/api.php/provide/vod",
       "name": "TV-卧龙资源",
+      "detail": "",
+      "is_adult": false
+    },
+    "wolongzy_": {
+      "api": "https://collect.wolongzy.com/api.php/provide/vod",
+      "name": "TV-卧龙资源-",
       "detail": "",
       "is_adult": false
     },
@@ -230,7 +290,7 @@
     },
     "hhzyapi": {
       "api": "https://hhzyapi.com/api.php/provide/vod",
-      "name": "TV-豪华资源",
+      "name": "TV-海豚资源",
       "detail": "https://hhzyapi.com",
       "is_adult": false
     },
@@ -337,6 +397,11 @@
       "api": "https://huawei8.live/api.php/provide/vod",
       "name": "华为吧资源",
       "is_adult": false
+  },
+    "h爱蛋资源": {
+      "api": "https://lovedan.net/api.php/provide/vod",
+      "name": "爱蛋资源",
+      "is_adult": false
     },
     "taopianapi": {
       "api": "https://taopianapi.com/cjapi/sda/vod",
@@ -346,6 +411,11 @@
     "hongniuzy3": {
       "api": "https://www.hongniuzy3.com/api.php/provide/vod",
       "name": "红牛资源",
+      "is_adult": false
+  },
+    "sdzyapi": {
+      "api": "https://sdzyapi.com/api.php/provide/vod",
+      "name": "闪电资源",
       "is_adult": false
     },
     "xsd_sdzyapi": {
