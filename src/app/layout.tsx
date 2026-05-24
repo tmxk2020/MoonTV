@@ -1,14 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-
 import './globals.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
-
 import { getConfig } from '@/lib/config';
 import RuntimeConfig from '@/lib/runtime';
-
 import { GlobalErrorIndicator } from '../components/GlobalErrorIndicator';
 import { SiteProvider } from '../components/SiteProvider';
 import { ThemeProvider } from '../components/ThemeProvider';
@@ -25,7 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
     const config = await getConfig();
     siteName = config.SiteConfig.SiteName;
   }
-
   return {
     title: siteName,
     description: '影视聚合',
@@ -58,6 +53,7 @@ export default async function RootLayout({
       type: category.type,
       query: category.query,
     })) || ([] as Array<{ name: string; type: 'movie' | 'tv'; query: string }>);
+
   if (
     process.env.NEXT_PUBLIC_STORAGE_TYPE !== 'd1' &&
     process.env.NEXT_PUBLIC_STORAGE_TYPE !== 'upstash'
@@ -78,7 +74,6 @@ export default async function RootLayout({
     }));
   }
 
-  // 将运行时配置注入到全局 window 对象，供客户端在运行时读取
   const runtimeConfig = {
     STORAGE_TYPE: process.env.NEXT_PUBLIC_STORAGE_TYPE || 'localstorage',
     ENABLE_REGISTER: enableRegister,
@@ -89,14 +84,12 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang='zh-CN' suppressHydrationWarning>
+    <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <meta
-          name='viewport'
-          content='width=device-width, initial-scale=1.0, viewport-fit=cover'
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
-        {/* 将配置序列化后直接写入脚本，浏览器端可通过 window.RUNTIME_CONFIG 获取 */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
           dangerouslySetInnerHTML={{
             __html: `window.RUNTIME_CONFIG = ${JSON.stringify(runtimeConfig)};`,
@@ -104,11 +97,11 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-200`}
+        className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-200 transition-all duration-300 cinema-mode-support`}
       >
         <ThemeProvider
-          attribute='class'
-          defaultTheme='system'
+          attribute="class"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
@@ -117,6 +110,51 @@ export default async function RootLayout({
             <GlobalErrorIndicator />
           </SiteProvider>
         </ThemeProvider>
+
+        {/* 核弹级 F11 真全屏观影模式 + 手机长按进入 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // F11 触发真全屏 + 隐藏所有 UI
+              document.addEventListener('keydown', function(e) {
+                if (e.key === 'F11') {
+                  e.preventDefault();
+                  if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen?.() ||
+                    document.documentElement.webkitRequestFullscreen?.() ||
+                    document.documentElement.msRequestFullscreen?.();
+                    document.body.classList.add('cinema-mode');
+                  } else {
+                    document.exitFullscreen?.() ||
+                    document.webkitExitFullscreen?.() ||
+                    document.msExitFullscreen?.();
+                    document.body.classList.remove('cinema-mode');
+                  }
+                }
+              });
+
+              // ESC 或退出全屏时恢复
+              document.addEventListener('fullscreenchange', function() {
+                if (!document.fullscreenElement) {
+                  document.body.classList.remove('cinema-mode');
+                }
+              });
+
+              // 手机长按播放器 1.5 秒进入真全屏
+              let pressTimer;
+              document.addEventListener('touchstart', function(e) {
+                if (e.target.closest('[data-artplayer]') || e.target.closest('.artplayer')) {
+                  pressTimer = setTimeout(() => {
+                    document.documentElement.requestFullscreen?.();
+                    document.body.classList.add('cinema-mode');
+                  }, 1500);
+                }
+              }, { passive: true });
+              document.addEventListener('touchend', () => clearTimeout(pressTimer));
+              document.addEventListener('touchcancel', () => clearTimeout(pressTimer));
+            `,
+          }}
+        />
       </body>
     </html>
   );
